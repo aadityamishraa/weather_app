@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/data_service.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _cityTextController = TextEditingController();
+  final _dataservice = DataService();
 
+  void _search(){
+    _dataservice.getWeather(_cityTextController.text);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +34,7 @@ class _MyAppState extends State<MyApp> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Search')),
+              ElevatedButton(onPressed: _search, child: Text('Search')),
             ],
           ),
         ),
